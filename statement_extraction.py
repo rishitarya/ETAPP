@@ -22,12 +22,12 @@ if SERVICE_ACCOUNT_JSON:
     with open(SERVICE_ACCOUNT_FILE, "w") as f:
         f.write(SERVICE_ACCOUNT_JSON)
 
-# SHEETS_SAC_JSON = os.environ.get("SHEETS_SAC_FILE")
+SHEETS_SAC_JSON = os.environ.get("SHEETS_SAC_FILE")
 SHEETS_SAC_FILE = "sheets_sac.json"
 
-# if SHEETS_SAC_JSON:
-#     with open(SHEETS_SAC_FILE, "w") as f:
-#         f.write(SHEETS_SAC_JSON)
+if SHEETS_SAC_JSON:
+    with open(SHEETS_SAC_FILE, "w") as f:
+        f.write(SHEETS_SAC_JSON)
 
 from gmail_auth import get_gmail_service
 
@@ -210,40 +210,6 @@ def push_to_sheets(df):
     # Authenticate
     creds = sac.from_service_account_file(
         SERVICE_ACCOUNT_FILE,
-        scopes=SCOPES
-    )
-    client = gspread.authorize(creds)
-    
-    sheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1Jd6E_x2Wqa7rPOhjT3SxwlF7r0kO6Hq35DntwLQ-Gi0/edit?pli=1&gid=0#gid=0').sheet1
-
-    for index, row in df.iterrows():
-        sheet.append_row(row.tolist())
-
-    return 0
-
-
-def statement_extraction(banks = ['axis','axiscc','mahb','hdfc'],days = 7):
-    for bank in banks:
-        df = extract_and_classify(bank,days)
-        try:
-            df['account'] = bank.capitalize()
-            push_to_sheets(df)
-            print('Statement push successful')
-
-            return 0
-        except Exception as e:
-            print(e)
-            return 100
-        
-def push_to_sheets(df):
-
-    # Scopes for Sheets API
-    SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
-    print(len(SHEETS_SAC_JSON))
-    
-    # Authenticate
-    creds = sac.from_service_account_file(
-        SHEETS_SAC_FILE,
         scopes=SCOPES
     )
     client = gspread.authorize(creds)
