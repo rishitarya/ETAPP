@@ -202,7 +202,7 @@ def extract_and_classify(bank,days):
     return classify(data)
                 
 def push_to_sheets(df):
-    SERVICE_ACCOUNT_FILE = "sac.json"
+    # SERVICE_ACCOUNT_FILE = "sac.json"
 
     # Scopes for Sheets API
     SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
