@@ -261,12 +261,11 @@ def statement_extraction(banks = ['axis','axiscc','mahb','hdfc'],days = 7):
         try:
             df['account'] = bank.upper()
             df['epoch'] = pd.to_datetime(df['date']).astype(int) // 10**9
-            push_to_sheets(df)
+            if(len(df) > 0):
+                push_to_sheets(df)
             print('Statement push successful')
 
-            return 0
         except Exception as e:
             print(e)
-            return 100
 
 
