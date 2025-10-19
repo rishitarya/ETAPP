@@ -1,39 +1,42 @@
 name: Weekly Expense Tracker
 
-# Trigger weekly on Monday at 9 AM UTC, and allow manual trigger
 on:
   schedule:
-    - cron: '0 9 * * 1'  # Every Monday 9:00 UTC
-  workflow_dispatch:      # Manual trigger option
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
 
 jobs:
   run-expense-tracker:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      # Step 2: Setup Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Step 4: Write JSON secrets to files (preserving multi-line formatting)
+      # Step 4: Write JSON secrets to files using heredoc
       - name: Create JSON files from secrets
+        env:
+          SERVICE_ACCOUNT_FILE_SECRET: ${{ secrets.SERVICE_ACCOUNT_FILE }}
+          SHEETS_SAC_JSON_SECRET: ${{ secrets.SHEETS_SAC_JSON }}
         run: |
-          printf '%s' "${{ secrets.SERVICE_ACCOUNT_FILE }}" > service_account.json
-          printf '%s' "${{ secrets.SHEETS_SAC_JSON }}" > sheets_sac.json
+          cat <<EOF > service_account.json
+$SERVICE_ACCOUNT_FILE_SECRET
+EOF
 
-      # Step 5: Run your expense tracker
+          cat <<EOF > sheets_sac.json
+$SHEETS_SAC_JSON_SECRET
+EOF
+
       - name: Run Expense Tracker Script
         run: python main.py
         env:
