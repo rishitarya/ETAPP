@@ -38,11 +38,11 @@ jobs:
       - name: Create JSON files from secrets
         env:
           SERVICE_ACCOUNT_FILE_SECRET: ${{ secrets.SERVICE_ACCOUNT_FILE }}
-          SHEETS_SAC_JSON_SECRET: ${{ secrets.SHEETS_SAC_JSON }}
+          SHEETS_SAC_JSON_SECRET: ${{ secrets.SHEETS_SAC_FILE }}
         run: |
           # Use printf to safely write secret contents to files (avoids heredoc indentation issues)
           printf '%s' "$SERVICE_ACCOUNT_FILE_SECRET" > service_account.json
-          printf '%s' "$SHEETS_SAC_JSON_SECRET" > sheets_sac.json
+          printf '%s' "$SHEETS_SAC_FILE_SECRET" > sheets_sac.json
           # Ensure files were created
           ls -l service_account.json sheets_sac.json
 
