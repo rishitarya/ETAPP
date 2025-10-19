@@ -12,6 +12,8 @@ SERVICE_ACCOUNT_FILE = "service_account.json"
 if SERVICE_ACCOUNT_JSON:
     with open(SERVICE_ACCOUNT_FILE, "w") as f:
         f.write(SERVICE_ACCOUNT_JSON)
+else:
+    print('secret not found')
 
 def get_gmail_service():
     creds = None
