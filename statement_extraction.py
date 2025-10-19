@@ -209,7 +209,7 @@ def push_to_sheets(df):
     
     # Authenticate
     creds = sac.from_service_account_file(
-        SERVICE_ACCOUNT_FILE,
+        SHEETS_SAC_FILE,
         scopes=SCOPES
     )
     client = gspread.authorize(creds)
