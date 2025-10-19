@@ -25,10 +25,10 @@ jobs:
 
       - name: Debug SERVICE_ACCOUNT_FILE secret
         env:
-          SERVICE_ACCOUNT_FILE_SECRET: ${{ secrets.SERVICE_ACCOUNT_FILE }}
+          SHEETS_SAC_JSON_SECRET: ${{ secrets.SHEETS_SAC_FILE }}
         run: |
-          if [ -z "$SERVICE_ACCOUNT_FILE_SECRET" ]; then
-            echo "SERVICE_ACCOUNT_FILE secret is empty!"
+          if [ -z "$SHEETS_SAC_JSON_SECRET" ]; then
+            echo "SHEETS_SAC_JSON_SECRET secret is empty!"
             exit 1
           else
             echo "SHEETS_SAC_FILE length: ${#SHEETS_SAC_FILE_SECRET}"
