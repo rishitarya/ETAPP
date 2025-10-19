@@ -239,7 +239,7 @@ def push_to_sheets(df):
 
     # Scopes for Sheets API
     SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
-    # print(SHEETS_SAC_JSON)
+    print(len(SHEETS_SAC_JSON))
     
     # Authenticate
     creds = sac.from_service_account_file(
