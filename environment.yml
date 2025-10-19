@@ -1,0 +1,4 @@
+name: ET
+channels:
+  - defaults
+prefix: /Users/admin/miniconda3/envs/ET
