@@ -15,8 +15,8 @@ from bs4 import BeautifulSoup
 import gspread
 from google.oauth2.service_account import Credentials as sac
 
-SERVICE_ACCOUNT_FILE = os.environ.get("SERVICE_ACCOUNT_FILE", "service_token.json")
-SHEETS_SAC_FILE = os.environ.get("SHEETS_SAC_FILE", "sac.json")
+SERVICE_ACCOUNT_FILE = os.environ.get("SERVICE_ACCOUNT_FILE")
+SHEETS_SAC_FILE = os.environ.get("SHEETS_SAC_FILE")
 
 from gmail_auth import get_gmail_service
 
