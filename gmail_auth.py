@@ -6,12 +6,19 @@ from googleapiclient.discovery import build
 
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
+SERVICE_ACCOUNT_JSON = os.environ.get("SERVICE_ACCOUNT_FILE")
+SERVICE_ACCOUNT_FILE = "service_account.json"
+
+if SERVICE_ACCOUNT_JSON:
+    with open(SERVICE_ACCOUNT_FILE, "w") as f:
+        f.write(SERVICE_ACCOUNT_JSON)
+
 def get_gmail_service():
     creds = None
 
     # Try local file
-    if os.path.exists('service_token.json'):
-        creds = Credentials.from_authorized_user_file('service_token.json', SCOPES)
+    if os.path.exists(SERVICE_ACCOUNT_FILE):
+        creds = Credentials.from_authorized_user_file(SERVICE_ACCOUNT_FILE, SCOPES)
 
     # Try environment variable (for cloud)
     elif os.getenv("GMAIL_TOKEN_JSON"):
