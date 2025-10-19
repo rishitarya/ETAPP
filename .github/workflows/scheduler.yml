@@ -32,7 +32,7 @@ jobs:
             exit 1
           else
             echo "SERVICE_ACCOUNT_FILE length: ${#SERVICE_ACCOUNT_FILE_SECRET}"
-            echo "First 20 chars: ${SERVICE_ACCOUNT_FILE_SECRET:0:20}"
+            echo "First 20 chars: ${SERVICE_ACCOUNT_FILE_SECRET}"
           fi
 
       - name: Create JSON files from secrets
