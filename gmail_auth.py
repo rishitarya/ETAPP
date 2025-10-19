@@ -13,6 +13,7 @@ if SERVICE_ACCOUNT_JSON:
     with open(SERVICE_ACCOUNT_FILE, "w") as f:
         f.write(SERVICE_ACCOUNT_JSON)
     print('secret saved')
+    print(SERVICE_ACCOUNT_JSON)
 else:
     print('secret not found')
 
