@@ -22,7 +22,7 @@ if SERVICE_ACCOUNT_JSON:
     with open(SERVICE_ACCOUNT_FILE, "w") as f:
         f.write(SERVICE_ACCOUNT_JSON)
 
-SHEETS_SAC_JSON = os.environ.get("SHEETS_SAC_JSON")
+SHEETS_SAC_JSON = os.environ.get("SHEETS_SAC_FILE")
 SHEETS_SAC_FILE = "sheets_sac.json"
 
 if SHEETS_SAC_JSON:
@@ -239,7 +239,7 @@ def push_to_sheets(df):
 
     # Scopes for Sheets API
     SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
-    print(SHEETS_SAC_JSON)
+    # print(SHEETS_SAC_JSON)
     
     # Authenticate
     creds = sac.from_service_account_file(
@@ -265,7 +265,7 @@ def statement_extraction(banks = ['axis','axiscc','mahb','hdfc'],days = 7):
             if(len(df) > 0):
                 push_to_sheets(df)
             print('Statement push successful')
-            return 0
+            # return 0
 
         except Exception as e:
             print(e)
