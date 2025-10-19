@@ -239,6 +239,7 @@ def push_to_sheets(df):
 
     # Scopes for Sheets API
     SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
+    print(SHEETS_SAC_JSON)
     
     # Authenticate
     creds = sac.from_service_account_file(
@@ -264,6 +265,7 @@ def statement_extraction(banks = ['axis','axiscc','mahb','hdfc'],days = 7):
             if(len(df) > 0):
                 push_to_sheets(df)
             print('Statement push successful')
+            return 0
 
         except Exception as e:
             print(e)
