@@ -27,11 +27,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Step 4: Write JSON secrets to files
+      # Step 4: Write JSON secrets to files (preserving multi-line formatting)
       - name: Create JSON files from secrets
         run: |
-          echo "${{ secrets.SERVICE_ACCOUNT_FILE }}" > service_account.json
-          echo "${{ secrets.SHEETS_SAC_JSON }}" > sheets_sac.json
+          printf '%s' "${{ secrets.SERVICE_ACCOUNT_FILE }}" > service_account.json
+          printf '%s' "${{ secrets.SHEETS_SAC_JSON }}" > sheets_sac.json
 
       # Step 5: Run your expense tracker
       - name: Run Expense Tracker Script
