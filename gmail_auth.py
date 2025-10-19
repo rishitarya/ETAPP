@@ -7,7 +7,7 @@ from googleapiclient.discovery import build
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
 SERVICE_ACCOUNT_JSON = os.environ.get("SERVICE_ACCOUNT_FILE")
-print(len(SERVICE_ACCOUNT_JSON))
+print(SERVICE_ACCOUNT_JSON)
 SERVICE_ACCOUNT_FILE = "service_account.json"
 
 if SERVICE_ACCOUNT_JSON:
