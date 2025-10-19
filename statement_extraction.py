@@ -22,12 +22,12 @@ if SERVICE_ACCOUNT_JSON:
     with open(SERVICE_ACCOUNT_FILE, "w") as f:
         f.write(SERVICE_ACCOUNT_JSON)
 
-SHEETS_SAC_JSON = os.environ.get("SHEETS_SAC_FILE")
+# SHEETS_SAC_JSON = os.environ.get("SHEETS_SAC_FILE")
 SHEETS_SAC_FILE = "sheets_sac.json"
 
-if SHEETS_SAC_JSON:
-    with open(SHEETS_SAC_FILE, "w") as f:
-        f.write(SHEETS_SAC_JSON)
+# if SHEETS_SAC_JSON:
+#     with open(SHEETS_SAC_FILE, "w") as f:
+#         f.write(SHEETS_SAC_JSON)
 
 from gmail_auth import get_gmail_service
 
