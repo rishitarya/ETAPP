@@ -15,13 +15,15 @@ from bs4 import BeautifulSoup
 import gspread
 from google.oauth2.service_account import Credentials as sac
 
+SERVICE_ACCOUNT_FILE = os.environ.get("SERVICE_ACCOUNT_FILE", "service_token.json")
+SHEETS_SAC_FILE = os.environ.get("SHEETS_SAC_FILE", "sac.json")
 
 from gmail_auth import get_gmail_service
 
 service = get_gmail_service()
 
 def get_msgs(bank,days):
-    creds = Credentials.from_authorized_user_file('service_token.json')
+    creds = Credentials.from_authorized_user_file(SERVICE_ACCOUNT_FILE, ['https://www.googleapis.com/auth/gmail.readonly'])
     
     if not creds.valid:
         if creds.expired and creds.refresh_token:
@@ -223,14 +225,13 @@ def statement_extraction(banks = ['axis','axiscc','mahb','hdfc'],days = 7):
             return 100
         
 def push_to_sheets(df):
-    SERVICE_ACCOUNT_FILE = "sac.json"
 
     # Scopes for Sheets API
     SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
     
     # Authenticate
     creds = sac.from_service_account_file(
-        SERVICE_ACCOUNT_FILE,
+        SHEETS_SAC_FILE,
         scopes=SCOPES
     )
     client = gspread.authorize(creds)
