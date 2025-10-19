@@ -47,6 +47,7 @@ jobs:
           ls -l service_account.json sheets_sac.json
 
       - name: Run Expense Tracker Script
+        run: python main.py
         env:
           SERVICE_ACCOUNT_FILE: service_account.json
           SHEETS_SAC_JSON: sheets_sac.json
