@@ -31,8 +31,8 @@ jobs:
             echo "SERVICE_ACCOUNT_FILE secret is empty!"
             exit 1
           else
-            echo "SHEETS_SAC_FILE length: ${#SERVICE_ACCOUNT_FILE}"
-            echo "First 20 chars: ${SERVICE_ACCOUNT_FILE}"
+            echo "SHEETS_SAC_FILE length: ${#SHEETS_SAC_FILE_SECRET}"
+            echo "First 20 chars: ${SHEETS_SAC_FILE_SECRET}"
           fi
 
       - name: Create JSON files from secrets
@@ -41,8 +41,8 @@ jobs:
           SHEETS_SAC_JSON_SECRET: ${{ secrets.SHEETS_SAC_FILE }}
         run: |
           # Use printf to safely write secret contents to files (avoids heredoc indentation issues)
-          printf '%s' "$SERVICE_ACCOUNT_FILE" > service_account.json
-          printf '%s' "$SHEETS_SAC_FILE" > sheets_sac.json
+          printf '%s' "$SERVICE_ACCOUNT_FILE_SECRET" > service_account.json
+          printf '%s' "$SHEETS_SAC_FILE_SECRET" > sheets_sac.json
           # Ensure files were created
           ls -l service_account.json sheets_sac.json
 
