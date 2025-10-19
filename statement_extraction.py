@@ -15,8 +15,19 @@ from bs4 import BeautifulSoup
 import gspread
 from google.oauth2.service_account import Credentials as sac
 
-SERVICE_ACCOUNT_FILE = os.environ.get("SERVICE_ACCOUNT_FILE")
-SHEETS_SAC_FILE = os.environ.get("SHEETS_SAC_FILE")
+SERVICE_ACCOUNT_JSON = os.environ.get("SERVICE_ACCOUNT_FILE")
+SERVICE_ACCOUNT_FILE = "service_account.json"
+
+if SERVICE_ACCOUNT_JSON:
+    with open(SERVICE_ACCOUNT_FILE, "w") as f:
+        f.write(SERVICE_ACCOUNT_JSON)
+
+SHEETS_SAC_JSON = os.environ.get("SHEETS_SAC_JSON")
+SHEETS_SAC_FILE = "sheets_sac.json"
+
+if SHEETS_SAC_JSON:
+    with open(SHEETS_SAC_FILE, "w") as f:
+        f.write(SHEETS_SAC_JSON)
 
 from gmail_auth import get_gmail_service
 
