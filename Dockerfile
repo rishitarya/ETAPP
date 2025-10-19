@@ -11,6 +11,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy all project files
+COPY service_token.json /app/service_token.json
+COPY sac.json /app/sac.json
 COPY . .
 
 # Expose port 8080 (Cloud Run default)
