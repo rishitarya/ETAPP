@@ -2,7 +2,7 @@ name: Weekly Expense Tracker
 
 on:
   schedule:
-    - cron: '30 3 * * *'
+    - cron: '30 18 * * *'
   workflow_dispatch:
 
 jobs:
