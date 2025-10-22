@@ -3,7 +3,7 @@ from typing import List, Optional
 import traceback
 from statement_extraction import statement_extraction
 
-def run_extraction(banks = ['axis','axiscc','hdfc','mahb'],days = 7):
+def run_extraction(banks = ['axis','axiscc','hdfc','mahb'],days = 1):
     """
     Trigger statement extraction for given banks and days.
     """
