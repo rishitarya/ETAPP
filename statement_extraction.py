@@ -155,7 +155,7 @@ def extract_and_classify(bank,days):
                     amounts.append(amount)
                     tos.append(to)
                     via = 'IMPS'
-                    via.append(via)
+                    vias.append(via)
                 except Exception as e:
                     print(bank,via,e)
 
